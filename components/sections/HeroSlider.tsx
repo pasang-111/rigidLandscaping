@@ -186,7 +186,7 @@ export default function HeroSlider() {
 
           <p className="mt-5 text-[12px] font-medium tracking-[0.06em] text-white/50">
             A division of{" "}
-            
+            <a
               href={SITE.parentUrl}
               target="_blank"
               rel="noopener noreferrer"
