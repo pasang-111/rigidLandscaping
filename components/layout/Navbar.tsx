@@ -78,7 +78,7 @@ export default function Navbar() {
         <div
           className={`relative transition-all duration-500 ${
             scrolled
-              ? "bg-[#1a3a32]/95 py-2.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+              ? "glass-nav-scrolled py-2.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.45)]"
               : "bg-gradient-to-b from-[#16302A]/80 to-transparent py-4"
           }`}
         >
@@ -101,9 +101,7 @@ export default function Navbar() {
             {/* Center nav */}
             <nav
               className={`hidden items-center justify-center lg:flex ${
-                scrolled
-                  ? ""
-                  : "rounded-full border border-white/10 bg-[#16302A]/50 px-2 py-1.5 backdrop-blur-md"
+                scrolled ? "" : "nav-center-pill rounded-full px-2 py-1.5"
               }`}
               aria-label="Primary"
             >
@@ -156,7 +154,7 @@ export default function Navbar() {
 
             {/* Right actions */}
             <div className="flex items-center justify-end gap-2 justify-self-end sm:gap-3">
-              <a
+              
                 href={`tel:${SITE.phoneHref}`}
                 className="hidden items-center justify-center rounded-full border border-white/15 bg-white/5 p-2.5 text-white/80 transition-all hover:border-gold-light/50 hover:text-gold-light sm:inline-flex"
                 aria-label="Call us"
@@ -189,7 +187,7 @@ export default function Navbar() {
             setServicesOpen(true);
           }}
         >
-          <div className="border-t border-white/10 bg-[#1a3a32]/98 shadow-[0_24px_80px_-16px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+          <div className="glass-mega border-t border-white/10 shadow-[0_24px_80px_-16px_rgba(0,0,0,0.5)]">
             <div className="mx-auto grid max-w-wrap grid-cols-1 gap-8 px-6 py-8 md:grid-cols-12 md:px-12 md:py-10">
               <div className="md:col-span-4">
                 <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-light">
@@ -246,7 +244,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="border-t border-white/10 bg-[#142e28]/80">
+            <div className="glass-mega-footer border-t border-white/10">
               <div className="mx-auto flex max-w-wrap flex-wrap items-center justify-between gap-4 px-6 py-3.5 md:px-12">
                 <p className="text-[12.5px] font-light text-white/50">
                   Full-service landscaping across Sydney — ground up, built right.
