@@ -154,7 +154,7 @@ export default function Navbar() {
 
             {/* Right actions */}
             <div className="flex items-center justify-end gap-2 justify-self-end sm:gap-3">
-              
+              <a
                 href={`tel:${SITE.phoneHref}`}
                 className="hidden items-center justify-center rounded-full border border-white/15 bg-white/5 p-2.5 text-white/80 transition-all hover:border-gold-light/50 hover:text-gold-light sm:inline-flex"
                 aria-label="Call us"
