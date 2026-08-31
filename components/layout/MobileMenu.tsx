@@ -168,7 +168,7 @@ export default function MobileMenu() {
                   Get a Quote
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
-                
+                <a
                   href={`tel:${SITE.phoneHref}`}
                   onClick={close}
                   className="flex w-full items-center justify-center gap-2 rounded-sm border border-white/15 py-3 text-sm font-medium text-white transition-colors hover:border-gold-light/40"
