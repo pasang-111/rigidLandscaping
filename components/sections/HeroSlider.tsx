@@ -128,7 +128,7 @@ export default function HeroSlider() {
             className="absolute -inset-[4%]"
             style={i === index ? { x: sx, y: sy } : undefined}
             initial={false}
-            animate={i === index ? { scale: 1.0 } : { scale: 1.06 }}
+            animate={i === index ? { scale: 1.1 } : { scale: 1.0 }}
             transition={{
               duration: i === index ? SLIDE_DURATION / 1000 + FADE_DURATION : 0.8,
               ease: "linear",
@@ -148,10 +148,15 @@ export default function HeroSlider() {
         </motion.div>
       ))}
 
+      <div className="grade-scrim" />
       <div className="grade-warm-lift" />
       <div className="grade-vignette" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-[4] h-16 bg-gradient-to-b from-forest-deep/50 to-transparent md:h-24" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-36 bg-gradient-to-t from-forest-deep/85 to-transparent md:h-48" />
+      <motion.div
+        className="hero-spotlight hidden md:block"
+        style={{ x: sx, y: sy }}
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[4] h-24 bg-gradient-to-b from-forest-deep/60 to-transparent md:h-32" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-44 bg-gradient-to-t from-forest-deep/90 to-transparent md:h-56" />
 
       <div className="relative z-10 mx-auto w-full max-w-wrap px-6 pb-20 pt-32 md:px-12 md:pb-24 md:pt-36">
         <motion.div
@@ -166,15 +171,22 @@ export default function HeroSlider() {
             </span>
           </div>
 
-          <h1 className="motto-soft will-change-transform whitespace-pre-line font-display text-[44px] font-bold leading-[0.95] tracking-tight text-white sm:text-[56px] md:text-[72px] lg:text-[84px]">
-            Ground up,
-            <br />
-            built right.
-          </h1>
+          <motion.div
+            className="overflow-hidden"
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={entered ? { clipPath: "inset(0 0% 0 0)" } : {}}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+          >
+            <h1 className="motto-soft will-change-transform whitespace-pre-line font-display text-[44px] font-bold leading-[0.95] tracking-tight text-white sm:text-[56px] md:text-[72px] lg:text-[84px]">
+              Ground up,
+              <br />
+              built right.
+            </h1>
+          </motion.div>
 
           <p className="mt-5 text-[12px] font-medium tracking-[0.06em] text-white/50">
             A division of{" "}
-            <a
+            
               href={SITE.parentUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -285,6 +297,18 @@ export default function HeroSlider() {
           </svg>
         </button>
       </div>
+
+      <motion.div
+        className="pointer-events-none absolute bottom-6 right-6 z-10 hidden flex-col items-center gap-3 md:flex"
+        initial={{ opacity: 0 }}
+        animate={entered ? { opacity: 1 } : {}}
+        transition={{ duration: 1, delay: 1.1 }}
+      >
+        <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/40">
+          Scroll
+        </span>
+        <span className="scroll-cue-track" />
+      </motion.div>
     </section>
   );
 }
