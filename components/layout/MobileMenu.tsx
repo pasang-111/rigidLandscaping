@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { LOCAL_IMAGE_PROPS } from "@/lib/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { NAV_LINKS, SERVICES, SITE } from "@/lib/constants";
 import { ChevronDown, Phone, ArrowUpRight } from "lucide-react";
@@ -11,46 +12,37 @@ import { ChevronDown, Phone, ArrowUpRight } from "lucide-react";
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [servicesExpanded, setServicesExpanded] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Lock body scroll while the full-screen menu is open.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
 
   const close = () => {
     setOpen(false);
     setServicesExpanded(false);
   };
 
-  return (
-    <div className="lg:hidden">
-      <button
-        aria-label="Toggle menu"
-        aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
-        className="relative z-[110] flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
-      >
-        <span
-          className={`block h-[1.5px] w-[22px] bg-white transition-transform duration-300 ${
-            open ? "translate-y-[6.5px] rotate-45" : ""
-          }`}
-        />
-        <span
-          className={`block h-[1.5px] w-[22px] bg-white transition-opacity duration-300 ${
-            open ? "opacity-0" : "opacity-100"
-          }`}
-        />
-        <span
-          className={`block h-[1.5px] w-[22px] bg-white transition-transform duration-300 ${
-            open ? "-translate-y-[6.5px] -rotate-45" : ""
-          }`}
-        />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="glass-mobile fixed inset-0 z-[100] flex flex-col"
-          >
+  const overlay = (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="glass-mobile fixed inset-0 z-[200] flex flex-col"
+        >
             <div className="flex items-center justify-between px-6 pb-4 pt-5">
               <Link href="/" onClick={close}>
                 <Image
@@ -176,7 +168,7 @@ export default function MobileMenu() {
                   Get a Quote
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
-                <a
+                
                   href={`tel:${SITE.phoneHref}`}
                   onClick={close}
                   className="flex w-full items-center justify-center gap-2 rounded-sm border border-white/15 py-3 text-sm font-medium text-white transition-colors hover:border-gold-light/40"
@@ -189,6 +181,34 @@ export default function MobileMenu() {
           </motion.div>
         )}
       </AnimatePresence>
+  );
+
+  return (
+    <div className="lg:hidden">
+      <button
+        aria-label="Toggle menu"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className="relative z-[110] flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
+      >
+        <span
+          className={`block h-[1.5px] w-[22px] bg-white transition-transform duration-300 ${
+            open ? "translate-y-[6.5px] rotate-45" : ""
+          }`}
+        />
+        <span
+          className={`block h-[1.5px] w-[22px] bg-white transition-opacity duration-300 ${
+            open ? "opacity-0" : "opacity-100"
+          }`}
+        />
+        <span
+          className={`block h-[1.5px] w-[22px] bg-white transition-transform duration-300 ${
+            open ? "-translate-y-[6.5px] -rotate-45" : ""
+          }`}
+        />
+      </button>
+
+      {mounted ? createPortal(overlay, document.body) : null}
     </div>
   );
 }
