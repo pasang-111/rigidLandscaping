@@ -253,35 +253,35 @@ export const ONGOING_SHORTS: OngoingShort[] = [
 export const HERO_SLIDES = [
   {
     image: "/hero-1.webp",
-    focus: "object-[center_35%]",
-    eyebrow: "Home Transformation",
+    focus: "object-[center_40%]",
+    eyebrow: "Retaining Walls",
     title: "Ground up,\nbuilt right.",
     description:
-      "From bare site to finished street appeal — fencing, planting, and clean edges that complete the home.",
+      "Engineered retaining walls that hold the slope and finish the yard — clean lines, built to last.",
   },
   {
     image: "/hero-2.webp",
-    focus: "object-[center_40%]",
-    eyebrow: "Yard Transformation",
-    title: "Unused space,\nreworked.",
+    focus: "object-[center_45%]",
+    eyebrow: "Walkways & Paths",
+    title: "Every step,\nconsidered.",
     description:
-      "Overgrown side yards become usable outdoor rooms — raised beds, turf, lighting, and a fire feature.",
+      "Modern stepping-stone paths set in stone, framed by turf and garden beds for total street appeal.",
   },
   {
     image: "/hero-3.webp",
-    focus: "object-[center_45%]",
-    eyebrow: "Turf & Levelling",
-    title: "Lawns done\nproperly.",
+    focus: "object-[center_40%]",
+    eyebrow: "Outdoor Lighting",
+    title: "Lit for\nevery evening.",
     description:
-      "Premium turf, level grade, and crisp edges to driveway and paths — finished the way a new build should be.",
+      "Layered garden lighting and fencing that turns any outdoor space into a space you actually use after dark.",
   },
   {
     image: "/hero-4.webp",
-    focus: "object-top",
-    eyebrow: "Full Service",
-    title: "Everything\nwe build.",
+    focus: "object-[center_35%]",
+    eyebrow: "Design & Planning",
+    title: "Planned first,\nbuilt once.",
     description:
-      "Turf, garden beds, retaining walls, fencing, decks, walkways, and concrete — one team, start to finish.",
+      "Every project starts with a detailed design — concept to construction, one team, start to finish.",
   },
 ];
 
